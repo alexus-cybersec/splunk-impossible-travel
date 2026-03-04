@@ -14,17 +14,6 @@ Credential theft
 Session hijacking
 VPN or proxy abuse
 
-## SPL Detection Query
-index=main "user=" "location="
-| rex "user=(?<user>\w+)"
-| rex "location=(?<location>\w+)"
-| eval _time=strptime(_time,"%Y-%m-%d %H:%M:%S")
-| stats earliest(_time) as first_seen latest(_time) as last_seen values(location) as locations dc(location) as distinct_locations by user
-| eval time_window_minutes=round((last_seen-first_seen)/60,2)
-| where distinct_locations >= 2 AND time_window_minutes <= 30
-| convert ctime(first_seen) ctime(last_seen)
-This query identifies users who log in from multiple locations within a short time window, which could indicate impossible travel.
-
 ## Initial Query Results
 This query was ran prior to the creation of the alert.
 ![Detection Query Results](screenshots/detection_query_results_r2.png)
