@@ -1,0 +1,8 @@
+index=main "user=" "location=" "action=success"
+| rex "user=(?<user>\w+)"
+| rex "location=(?<location>[A-Za-z]+)"
+| eval _time=strptime(substr(_raw,1,19),"%Y-%m-%d %H:%M:%S")
+| stats earliest(_time) as first_seen latest(_time) as last_seen values(location) as locations dc(location) as distinct_locations by user
+| eval time_window_minutes=round((last_seen-first_seen)/60,2)
+| where distinct_locations >= 2 AND time_window_minutes <= 30
+| convert ctime(first_seen) ctime(last_seen)
