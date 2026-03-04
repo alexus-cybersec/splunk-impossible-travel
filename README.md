@@ -25,7 +25,7 @@ index=main "user=" "location="
 | convert ctime(first_seen) ctime(last_seen)
 This query identifies users who log in from multiple locations within a short time window, which could indicate impossible travel.
 
-## Intial Query Results
+## Initial Query Results
 This query was ran prior to the creation of the alert.
 ![Detection Query Results](screenshots/detection_query_results_r2.png)
 
@@ -35,7 +35,7 @@ Authentication logs were ingested into the Splunk main index.
 
 ## Detection Query Results
 This query identifies users logging in from multiple locations.
-![Detection Query Results](screenshots/detection_query_results_r2.png)
+![Detection Query Results](screenshots/impossible_detection_results_r2.png)
 
 ## Alert Configuration
 A scheduled alert was created to automatically detect impossible travel activity.
