@@ -16,7 +16,7 @@ VPN or proxy abuse
 
 ## Initial Query Results
 This query was ran prior to the creation of the alert.
-![Detection Query Results](screenshots/detection_query_results_r2.png)
+![Initial Query Results](screenshots/initial_query_results_r2.png)
 
 ## Log Ingestion
 Authentication logs were ingested into the Splunk main index.
